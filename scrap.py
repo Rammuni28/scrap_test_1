@@ -196,7 +196,7 @@ VEHICLE_CLASSES_CONFIG = {
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["maharashtra"]
 YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["L3G","L3P"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
+PRODUCTS_TO_SCRAPE = ["L5G","L5P"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 # RTO_TO_SCRAPE = ["Agra RTO - UP80"]  # RTOs to scrape for each state
 # RTO_TO_SCRAPE = [
 #     "Agra RTO - UP80",
