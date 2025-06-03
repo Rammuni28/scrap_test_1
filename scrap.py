@@ -196,7 +196,7 @@ VEHICLE_CLASSES_CONFIG = {
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["maharashtra"]
 YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["L5G","L5P"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
+PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 # RTO_TO_SCRAPE = ["Agra RTO - UP80"]  # RTOs to scrape for each state
 # RTO_TO_SCRAPE = [
 #     "Agra RTO - UP80",
@@ -354,7 +354,14 @@ class VahanScraper:
         self.driver = None
         self.wait = None
         self.test_mode = test_mode
-        self.download_dir = str(Path.home() / "Downloads")  # Default downloads directory
+        
+        # Set up downloads directory in the same folder as the script
+        script_dir = Path(__file__).parent.absolute()
+        self.download_dir = str(script_dir / "downloads")
+        # Create downloads directory if it doesn't exist
+        os.makedirs(self.download_dir, exist_ok=True)
+        print(f"📁 Using download directory: {self.download_dir}")
+        
         if not self.test_mode:
             self.setup_driver(headless)
         
