@@ -467,7 +467,7 @@ VEHICLE_CLASSES_CONFIG = {
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["madhya_pradesh"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
+PRODUCTS_TO_SCRAPE = ["L3P"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 # RTO_TO_SCRAPE = [
 #         "Authorised Testing Centre (TUV SUD), Ranchi - JH201",
 #         "Authorized Fitness Centre(VAHAN),Dhanbad - JH202",
@@ -657,7 +657,7 @@ RTO_TO_SCRAPE = [
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = False
+HEADLESS_MODE = True
 DOWNLOAD_CSV = True
 
 class VahanScraper:
