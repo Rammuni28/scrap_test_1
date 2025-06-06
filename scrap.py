@@ -466,7 +466,7 @@ VEHICLE_CLASSES_CONFIG = {
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["madhya_pradesh"]  # Add more states as needed
-YEARS_TO_SCRAPE = ["2025"]
+YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 # RTO_TO_SCRAPE = [
 #         "Authorised Testing Centre (TUV SUD), Ranchi - JH201",
