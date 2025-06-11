@@ -629,6 +629,37 @@ RTO_CONFIG = {
         "UDHAM SINGH NAGAR ARTO - UK6": "//ul[@id='selectedRto_items']/li[20]",
         "UTTARKASHI ARTO - UK10": "//ul[@id='selectedRto_items']/li[21]",
         "VIKAS NAGAR ARTO - UK16": "//ul[@id='selectedRto_items']/li[22]"
+    },
+    "arunachal_pradesh": {
+        "ANJAW - AR17": "//ul[@id='selectedRto_items']/li[2]",
+        "Bichom - AR28": "//ul[@id='selectedRto_items']/li[3]",
+        "CHANGLANG - AR12": "//ul[@id='selectedRto_items']/li[4]",
+        "DIBANG VALLEY - AR10": "//ul[@id='selectedRto_items']/li[5]",
+        "EAST KAMENG - AR5": "//ul[@id='selectedRto_items']/li[6]",
+        "EAST SIANG - AR9": "//ul[@id='selectedRto_items']/li[7]",
+        "ITANAGAR CAPITAL REGION - AR1": "//ul[@id='selectedRto_items']/li[8]",
+        "KAMLE - AR23": "//ul[@id='selectedRto_items']/li[9]",
+        "Keyi Panyor - AR27": "//ul[@id='selectedRto_items']/li[10]",
+        "KRA-DAADI - AR19": "//ul[@id='selectedRto_items']/li[11]",
+        "KURUNG KUMEY - AR15": "//ul[@id='selectedRto_items']/li[12]",
+        "LEPARADA - AR25": "//ul[@id='selectedRto_items']/li[13]",
+        "LOHIT - AR11": "//ul[@id='selectedRto_items']/li[14]",
+        "LONGDING - AR18": "//ul[@id='selectedRto_items']/li[15]",
+        "LOWER DIBANG VALLEY - AR16": "//ul[@id='selectedRto_items']/li[16]",
+        "LOWER SIANG - AR22": "//ul[@id='selectedRto_items']/li[17]",
+        "LOWER SUBANSIRI - AR6": "//ul[@id='selectedRto_items']/li[18]",
+        "NAMSAI - AR20": "//ul[@id='selectedRto_items']/li[19]",
+        "PAKKE-KESANG - AR24": "//ul[@id='selectedRto_items']/li[20]",
+        "SHI-YOMI - AR26": "//ul[@id='selectedRto_items']/li[21]",
+        "SIANG - AR21": "//ul[@id='selectedRto_items']/li[22]",
+        "STATE TRANSPORT AUTHORITY - AR99": "//ul[@id='selectedRto_items']/li[23]",
+        "TAWANG - AR3": "//ul[@id='selectedRto_items']/li[24]",
+        "TIRAP - AR13": "//ul[@id='selectedRto_items']/li[25]",
+        "UPPER SIANG - AR14": "//ul[@id='selectedRto_items']/li[26]",
+        "UPPER SUBANSIRI - AR7": "//ul[@id='selectedRto_items']/li[27]",
+        "WEST KAMENG - AR4": "//ul[@id='selectedRto_items']/li[28]",
+        "WEST SIANG - AR8": "//ul[@id='selectedRto_items']/li[29]",
+        "YUPIA - AR2": "//ul[@id='selectedRto_items']/li[30]"
     }
     # Add RTOs for other states here
 }
@@ -645,7 +676,7 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["uttarakhand"]  # Add more states as needed
+STATES_TO_SCRAPE = ["arunachal_pradesh"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 
@@ -749,30 +780,60 @@ PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
 #     "SDM ZIRA - PB47"
 # ]
 #uttarakhand
+# RTO_TO_SCRAPE = [
+#     "ALMORA RTO - UK1",
+#     "BAGESHWAR ARTO - UK2",
+#     "DEHRADUN RTO - UK7",
+#     "HALDWANI RTO - UK4",
+#     "HARIDWAR ARTO - UK8",
+#     "KARANPRAYAG ARTO - UK11",
+#     "KASHIPUR ARTO - UK18",
+#     "KOTDWAR ARTO - UK15",
+#     "PAURI RTO - UK12",
+#     "PITHORAGARH ARTO - UK5",
+#     "RAMNAGAR ARTO - UK19",
+#     "RANIKHET ARTO - UK20",
+#     "RISHIKESH ARTO - UK14",
+#     "ROORKEE ARTO - UK17",
+#     "RUDRAPRAYAG ARTO - UK13",
+#     "STATE TRANSPORT AUTHORITY - UK111",
+#     "TANAKPUR ARTO - UK3",
+#     "TEHRI ARTO - UK9",
+#     "UDHAM SINGH NAGAR ARTO - UK6",
+#     "UTTARKASHI ARTO - UK10",
+#     "VIKAS NAGAR ARTO - UK16"
+# ]
 RTO_TO_SCRAPE = [
-    "ALMORA RTO - UK1",
-    "BAGESHWAR ARTO - UK2",
-    "DEHRADUN RTO - UK7",
-    "HALDWANI RTO - UK4",
-    "HARIDWAR ARTO - UK8",
-    "KARANPRAYAG ARTO - UK11",
-    "KASHIPUR ARTO - UK18",
-    "KOTDWAR ARTO - UK15",
-    "PAURI RTO - UK12",
-    "PITHORAGARH ARTO - UK5",
-    "RAMNAGAR ARTO - UK19",
-    "RANIKHET ARTO - UK20",
-    "RISHIKESH ARTO - UK14",
-    "ROORKEE ARTO - UK17",
-    "RUDRAPRAYAG ARTO - UK13",
-    "STATE TRANSPORT AUTHORITY - UK111",
-    "TANAKPUR ARTO - UK3",
-    "TEHRI ARTO - UK9",
-    "UDHAM SINGH NAGAR ARTO - UK6",
-    "UTTARKASHI ARTO - UK10",
-    "VIKAS NAGAR ARTO - UK16"
+    "ANJAW - AR17",
+    "Bichom - AR28",
+    "CHANGLANG - AR12",
+    "DIBANG VALLEY - AR10",
+    "EAST KAMENG - AR5",
+    "EAST SIANG - AR9",
+    "ITANAGAR CAPITAL REGION - AR1",
+    "KAMLE - AR23",
+    "Keyi Panyor - AR27",
+    "KRA-DAADI - AR19",
+    "KURUNG KUMEY - AR15",
+    "LEPARADA - AR25",
+    "LOHIT - AR11",
+    "LONGDING - AR18",
+    "LOWER DIBANG VALLEY - AR16",
+    "LOWER SIANG - AR22",
+    "LOWER SUBANSIRI - AR6",
+    "NAMSAI - AR20",
+    "PAKKE-KESANG - AR24",
+    "SHI-YOMI - AR26",
+    "SIANG - AR21",
+    "STATE TRANSPORT AUTHORITY - AR99",
+    "TAWANG - AR3",
+    "TIRAP - AR13",
+    "UPPER SIANG - AR14",
+    "UPPER SUBANSIRI - AR7",
+    "WEST KAMENG - AR4",
+    "WEST SIANG - AR8",
+    "YUPIA - AR2"
 ]
-
 # RTO_TO_SCRAPE = [
 #         "Authorised Testing Centre (TUV SUD), Ranchi - JH201",
 #         "Authorized Fitness Centre(VAHAN),Dhanbad - JH202",
