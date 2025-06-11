@@ -1088,7 +1088,7 @@ RTO_TO_SCRAPE = [
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = False
+HEADLESS_MODE = True
 DOWNLOAD_CSV = True
 
 class VahanScraper:
