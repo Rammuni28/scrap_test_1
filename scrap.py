@@ -629,37 +629,6 @@ RTO_CONFIG = {
         "UDHAM SINGH NAGAR ARTO - UK6": "//ul[@id='selectedRto_items']/li[20]",
         "UTTARKASHI ARTO - UK10": "//ul[@id='selectedRto_items']/li[21]",
         "VIKAS NAGAR ARTO - UK16": "//ul[@id='selectedRto_items']/li[22]"
-    },
-    "arunachal_pradesh": {
-        "ANJAW - AR17": "//ul[@id='selectedRto_items']/li[2]",
-        "Bichom - AR28": "//ul[@id='selectedRto_items']/li[3]",
-        "CHANGLANG - AR12": "//ul[@id='selectedRto_items']/li[4]",
-        "DIBANG VALLEY - AR10": "//ul[@id='selectedRto_items']/li[5]",
-        "EAST KAMENG - AR5": "//ul[@id='selectedRto_items']/li[6]",
-        "EAST SIANG - AR9": "//ul[@id='selectedRto_items']/li[7]",
-        "ITANAGAR CAPITAL REGION - AR1": "//ul[@id='selectedRto_items']/li[8]",
-        "KAMLE - AR23": "//ul[@id='selectedRto_items']/li[9]",
-        "Keyi Panyor - AR27": "//ul[@id='selectedRto_items']/li[10]",
-        "KRA-DAADI - AR19": "//ul[@id='selectedRto_items']/li[11]",
-        "KURUNG KUMEY - AR15": "//ul[@id='selectedRto_items']/li[12]",
-        "LEPARADA - AR25": "//ul[@id='selectedRto_items']/li[13]",
-        "LOHIT - AR11": "//ul[@id='selectedRto_items']/li[14]",
-        "LONGDING - AR18": "//ul[@id='selectedRto_items']/li[15]",
-        "LOWER DIBANG VALLEY - AR16": "//ul[@id='selectedRto_items']/li[16]",
-        "LOWER SIANG - AR22": "//ul[@id='selectedRto_items']/li[17]",
-        "LOWER SUBANSIRI - AR6": "//ul[@id='selectedRto_items']/li[18]",
-        "NAMSAI - AR20": "//ul[@id='selectedRto_items']/li[19]",
-        "PAKKE-KESANG - AR24": "//ul[@id='selectedRto_items']/li[20]",
-        "SHI-YOMI - AR26": "//ul[@id='selectedRto_items']/li[21]",
-        "SIANG - AR21": "//ul[@id='selectedRto_items']/li[22]",
-        "STATE TRANSPORT AUTHORITY - AR99": "//ul[@id='selectedRto_items']/li[23]",
-        "TAWANG - AR3": "//ul[@id='selectedRto_items']/li[24]",
-        "TIRAP - AR13": "//ul[@id='selectedRto_items']/li[25]",
-        "UPPER SIANG - AR14": "//ul[@id='selectedRto_items']/li[26]",
-        "UPPER SUBANSIRI - AR7": "//ul[@id='selectedRto_items']/li[27]",
-        "WEST KAMENG - AR4": "//ul[@id='selectedRto_items']/li[28]",
-        "WEST SIANG - AR8": "//ul[@id='selectedRto_items']/li[29]",
-        "YUPIA - AR2": "//ul[@id='selectedRto_items']/li[30]"
     }
     # Add RTOs for other states here
 }
@@ -667,118 +636,263 @@ RTO_CONFIG = {
 
 # VEHICLE CLASSES configuration
 VEHICLE_CLASSES_CONFIG = {
-    "E2W": ["TWO_WHEELER_NT", "TWO_WHEELER_T"],
-    "L3G": ["THREE_WHEELER_NT", "THREE_WHEELER_T"],
-    "L3P": ["THREE_WHEELER_NT", "THREE_WHEELER_T"],
-    "L5G": ["THREE_WHEELER_NT", "THREE_WHEELER_T"],
-    "L5P": ["THREE_WHEELER_NT", "THREE_WHEELER_T"]
+    "E2W": ["M_CYCLE_SCOOTER", "M_CYCLE_SCOOTER_SIDE_CAR", "MOPED"],
+    "L3G": ["E_RICKSHAW_CART_G"],
+    "L3P": ["E_RICKSHAW_P"],
+    "L5G": ["THREE_WHEELER_G"],
+    "L5P": ["THREE_WHEELER_P"]
 }
+
+# VEHICLE_CATEGORIES = {
+#     "E2W": ["M_CYCLE_SCOOTER", "M_CYCLE_SCOOTER_SIDE_CAR", "MOPED"],
+#     "L3G": ["E_RICKSHAW_CART_G"],
+#     "L3P": ["E_RICKSHAW_P"],
+#     "L5G": ["THREE_WHEELER_G"],
+#     "L5P": ["THREE_WHEELER_P"]
+# }
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["punjab"]  # Add more states as needed
+STATES_TO_SCRAPE = ["uttar_pradesh"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["L3G"]  # Can include "E2W", "L3G", "L3P", "L5G", "L5P"
+PRODUCTS_TO_SCRAPE = ["E2W"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 
+# RTO_TO_SCRAPE = [
+#     "PUNJAB STA(RAC)/(AITP) - PB1",
+#     "RTO AMRITSAR - PB2",
+#     "RTO BARNALA - PB19",
+#     "RTO BATHINDA - PB3",
+#     "RTO FARIDKOT  - PB4",
+#     "RTO FATEHGARH SAHIB - PB23",
+#     "RTO FAZILKA - PB22",
+#     "RTO FEROZPUR - PB5",
+#     "RTO GURDASPUR - PB6",
+#     "RTO HOSHIARPUR - PB7",
+#     "RTO JALANDHAR - PB8",
+#     "RTO KAPURTHALA - PB9",
+#     "RTO LUDHIANA - PB10",
+#     "RTO MALERKOTLA  - PB28",
+#     "RTO MANSA - PB31",
+#     "RTO MOGA - PB29",
+#     "RTO MUKTSAR SAHIB - PB30",
+#     "RTO PATHANKOT - PB35",
+#     "RTO PATIALA - PB11",
+#     "RTO ROPAR - PB12",
+#     "RTO SAHIBZADA AJIT SINGH NAGAR  - PB65",
+#     "RTO SANGRUR - PB13",
+#     "RTO SBS NAGAR - PB32",
+#     "RTO TARN TARAN - PB46",
+#     "SDM ABOHAR - PB15",
+#     "SDM ADAMPUR  - PB94",
+#     "SDM AHMEDGARH - PB82",
+#     "SDM AJNALA - PB14",
+#     "SDM AMARGARH - PB92",
+#     "SDM AMLOH - PB48",
+#     "SDM AMRITSAR-2 - PB89",
+#     "SDM ANANDPUR SAHIB - PB16",
+#     "SDM BABA BAKALA - PB17",
+#     "SDM BAGHA PURANA - PB69",
+#     "SDM BALACHAUR - PB20",
+#     "SDM BANGA - PB78",
+#     "SDM BASSI PATHANA - PB52",
+#     "SDM BATALA - PB18",
+#     "SDM BHAWNIGARH - PB84",
+#     "SDM BHIKHIWIND - PB88",
+#     "SDM BHOLATH - PB57",
+#     "SDM BUDHLADA - PB50",
+#     "SDM CHAMKAUR SAHIB - PB71",
+#     "SDM DASUYA - PB21",
+#     "SDM DERA BABA NANAK - PB58",
+#     "SDM DERA BASSI  - PB70",
+#     "SDM DHARAMKOT - PB76",
+#     "SDM DHAR KALAN - PB68",
+#     "SDM DHURI - PB59",
+#     "SDM DINANAGAR - PB99",
+#     "SDM DIRBA - PB86",
+#     "SDM DUDHAN SADHAN - PB83",
+#     "SDM GARSHANKAR - PB24",
+#     "SDM GIDDARBAHA - PB60",
+#     "SDM GURU HAR SAHAI - PB77",
+#     "SDM JAGRAON - PB25",
+#     "SDM JAITO - PB62",
+#     "SDM JALALABAD - PB61",
+#     "SDM JALANDHAR-11 - PB90",
+#     "SDM KALANAUR - PB85",
+#     "SDM KHADUR SAHIB - PB63",
+#     "SDM KHAMANO - PB49",
+#     "SDM KHANNA - PB26",
+#     "SDM KHARAR - PB27",
+#     "SDM KOTKAPURA - PB79",
+#     "SDM LEHRAGAGA - PB75",
+#     "SDM LOPOKE  - PB93",
+#     "SDM LUDHIANA EAST - PB91",
+#     "SDM MAJITHA - PB81",
+#     "SDM MALOUT - PB53",
+#     "SDM MAUR MANDI - PB80",
+#     "SDM MOONAK - PB64",
+#     "SDM MORINDA - PB87",
+#     "SDM MUKERIAN - PB54",
+#     "SDM NABHA - PB34",
+#     "SDM NAKODAR - PB33",
+#     "SDM NANGAL - PB74",
+#     "SDM NIHAL SINGH WALA  - PB66",
+#     "SDM PATRAN - PB72",
+#     "SDM PATTI - PB38",
+#     "SDM PAYAL  - PB55",
+#     "SDM PHAGWARA - PB36",
+#     "SDM PHILLOUR - PB37",
+#     "SDM RAIKOT - PB56",
+#     "SDM RAJPURA - PB39",
+#     "SDM RAMPURA PHUL  - PB40",
+#     "SDM SAMANA - PB42",
+#     "SDM SAMRALA - PB43",
+#     "SDM SARDULGARH - PB51",
+#     "SDM SHAHKOT  - PB67",
+#     "SDM SULTANPUR LODHI - PB41",
+#     "SDM SUNAM - PB44",
+#     "SDM TALWANDI SABO - PB45",
+#     "SDM TANDA - PB95",
+#     "SDM TAPA - PB73",
+#     "SDM ZIRA - PB47"
+# ]
 RTO_TO_SCRAPE = [
-    "PUNJAB STA(RAC)/(AITP) - PB1",
-    "RTO AMRITSAR - PB2",
-    "RTO BARNALA - PB19",
-    "RTO BATHINDA - PB3",
-    "RTO FARIDKOT  - PB4",
-    "RTO FATEHGARH SAHIB - PB23",
-    "RTO FAZILKA - PB22",
-    "RTO FEROZPUR - PB5",
-    "RTO GURDASPUR - PB6",
-    "RTO HOSHIARPUR - PB7",
-    "RTO JALANDHAR - PB8",
-    "RTO KAPURTHALA - PB9",
-    "RTO LUDHIANA - PB10",
-    "RTO MALERKOTLA  - PB28",
-    "RTO MANSA - PB31",
-    "RTO MOGA - PB29",
-    "RTO MUKTSAR SAHIB - PB30",
-    "RTO PATHANKOT - PB35",
-    "RTO PATIALA - PB11",
-    "RTO ROPAR - PB12",
-    "RTO SAHIBZADA AJIT SINGH NAGAR  - PB65",
-    "RTO SANGRUR - PB13",
-    "RTO SBS NAGAR - PB32",
-    "RTO TARN TARAN - PB46",
-    "SDM ABOHAR - PB15",
-    "SDM ADAMPUR  - PB94",
-    "SDM AHMEDGARH - PB82",
-    "SDM AJNALA - PB14",
-    "SDM AMARGARH - PB92",
-    "SDM AMLOH - PB48",
-    "SDM AMRITSAR-2 - PB89",
-    "SDM ANANDPUR SAHIB - PB16",
-    "SDM BABA BAKALA - PB17",
-    "SDM BAGHA PURANA - PB69",
-    "SDM BALACHAUR - PB20",
-    "SDM BANGA - PB78",
-    "SDM BASSI PATHANA - PB52",
-    "SDM BATALA - PB18",
-    "SDM BHAWNIGARH - PB84",
-    "SDM BHIKHIWIND - PB88",
-    "SDM BHOLATH - PB57",
-    "SDM BUDHLADA - PB50",
-    "SDM CHAMKAUR SAHIB - PB71",
-    "SDM DASUYA - PB21",
-    "SDM DERA BABA NANAK - PB58",
-    "SDM DERA BASSI  - PB70",
-    "SDM DHARAMKOT - PB76",
-    "SDM DHAR KALAN - PB68",
-    "SDM DHURI - PB59",
-    "SDM DINANAGAR - PB99",
-    "SDM DIRBA - PB86",
-    "SDM DUDHAN SADHAN - PB83",
-    "SDM GARSHANKAR - PB24",
-    "SDM GIDDARBAHA - PB60",
-    "SDM GURU HAR SAHAI - PB77",
-    "SDM JAGRAON - PB25",
-    "SDM JAITO - PB62",
-    "SDM JALALABAD - PB61",
-    "SDM JALANDHAR-11 - PB90",
-    "SDM KALANAUR - PB85",
-    "SDM KHADUR SAHIB - PB63",
-    "SDM KHAMANO - PB49",
-    "SDM KHANNA - PB26",
-    "SDM KHARAR - PB27",
-    "SDM KOTKAPURA - PB79",
-    "SDM LEHRAGAGA - PB75",
-    "SDM LOPOKE  - PB93",
-    "SDM LUDHIANA EAST - PB91",
-    "SDM MAJITHA - PB81",
-    "SDM MALOUT - PB53",
-    "SDM MAUR MANDI - PB80",
-    "SDM MOONAK - PB64",
-    "SDM MORINDA - PB87",
-    "SDM MUKERIAN - PB54",
-    "SDM NABHA - PB34",
-    "SDM NAKODAR - PB33",
-    "SDM NANGAL - PB74",
-    "SDM NIHAL SINGH WALA  - PB66",
-    "SDM PATRAN - PB72",
-    "SDM PATTI - PB38",
-    "SDM PAYAL  - PB55",
-    "SDM PHAGWARA - PB36",
-    "SDM PHILLOUR - PB37",
-    "SDM RAIKOT - PB56",
-    "SDM RAJPURA - PB39",
-    "SDM RAMPURA PHUL  - PB40",
-    "SDM SAMANA - PB42",
-    "SDM SAMRALA - PB43",
-    "SDM SARDULGARH - PB51",
-    "SDM SHAHKOT  - PB67",
-    "SDM SULTANPUR LODHI - PB41",
-    "SDM SUNAM - PB44",
-    "SDM TALWANDI SABO - PB45",
-    "SDM TANDA - PB95",
-    "SDM TAPA - PB73",
-    "SDM ZIRA - PB47"
+    "Agra RTO - UP80",
+    "AKBARPUR(AMBEDKAR NAGAR) - UP45",
+    "ALIGARH RTO - UP81",
+    "Amethi ARTO - UP36",
+    "ARTO OFFICE RAMPUR - UP22",
+    "AURAIYA - UP79",
+    "AYODHYA RTO - UP42",
+    "Azamgarh RTO - UP50",
+    "Badaun - UP24",
+    "Baghpat - UP17",
+    "Bahraich - UP40",
+    "Ballia - UP60",
+    "Balrampur - UP47",
+    "BANDARTO - UP90",
+    "Barabanki ARTO - UP41",
+    "BAREILLY - UP25",
+    "BASTI RTO - UP51",
+    "Bhadohi(SANT RAVIDAS NAGAR) - UP66",
+    "Bijnor - UP20",
+    "Bulandshahar - UP13",
+    "Chandauli - UP67",
+    "Chitrakoot - UP96",
+    "DEORIA - UP52",
+    "Etah - UP82",
+    "Etawah - UP75",
+    "Farrukhabad - UP76",
+    "FATHEHPUR - UP71",
+    "FEROZABAD - UP83",
+    "GHAZIABAD - UP14",
+    "Ghazipur - UP61",
+    "GONDA - UP43",
+    "Gorakhpur RTO - UP53",
+    "HAMIRPUR(UP) - UP91",
+    "Hapur - UP37",
+    "HARDOI - UP30",
+    "HATHRAS - UP86",
+    "JAUNPUR - UP62",
+    "JhansiRTO - UP93",
+    "JPNAGAR - UP23",
+    "Kannauj - UP74",
+    "Kanpur Dehat - UP77",
+    "KANPUR NAGAR - UP78",
+    "Kasganj(kashi ram nagar) - UP87",
+    "Kaushambi - UP73",
+    "LAKHIMPUR KHERI - UP31",
+    "Lalitpur - UP94",
+    "MAHANAGAR ARTO LUCKNOW (UP321) - UP321",
+    "Maharajganj - UP56",
+    "Mahoba - UP95",
+    "Mainpuri - UP84",
+    "MATHURA - UP85",
+    "Mau - UP54",
+    "MEERUT RTO - UP15",
+    "MIRZAPUR RTO - UP63",
+    "MORADABAD - UP21",
+    "M/S Sai Dham Super Srv Soln Pvt Ltd Ghaziabad - UP214",
+    "MuzaffarNagar - UP12",
+    "Noida - UP16",
+    "Orai - UP92",
+    "PADRAUNA(KUSHI NAGAR) - UP57",
+    "Pilibhit - UP26",
+    "PRATAPGARH - UP72",
+    "Prayagraj RTO - UP70",
+    "Raibareilly - UP33",
+    "SAHARANPUR RTO - UP11",
+    "SAHJAHANPUR - UP27",
+    "Sambhal ARTO - UP38",
+    "Sant Kabir Nagar - UP58",
+    "SHAMLI ARTO - UP19",
+    "Shravasti - UP46",
+    "Siddharth Nagar(naugarh) - UP55",
+    "Sitapur - UP34",
+    "SONBHADRA - UP64",
+    "STATE TRANSPORT AUTHORITY - UP999",
+    "Sultanpur - UP44",
+    "TRANSPORT NAGAR RTO LUCKNOW (UP32) - UP32",
+    "Unnao - UP35",
+    "VARANASI RTO - UP65"
 ]
+
+# RTO_TO_SCRAPE = [
+#     "AGAR MALWA RTO - MP70",
+#     "ALIRAJPUR DTO - MP69",
+#     "ANUPPUR DTO - MP65",
+#     "ASHOKNAGAR DTO - MP67",
+#     "BADWANI DTO - MP46",
+#     "BALAGHAT DTO - MP50",
+#     "BETUL DTO - MP48",
+#     "BHIND DTO - MP30",
+#     "BHOPAL RTO - MP4",
+#     "BURHANPUR DTO - MP68",
+#     "CHATTARPUR  ARTO - MP16",
+#     "CHHINDWARA ARTO - MP28",
+#     "DAMOH DTO - MP34",
+#     "DATIA DTO - MP32",
+#     "DEWAS DTO - MP41",
+#     "DHAR ARTO - MP11",
+#     "DINDORI DTO - MP52",
+#     "GUNA DTO - MP8",
+#     "GWALIOR RTO - MP7",
+#     "HARDA DTO - MP47",
+#     "HOSANGABAD DTO - MP5",
+#     "INDORE RTO - MP9",
+#     "JABALPUR RTO - MP20",
+#     "JHABUA DTO - MP45",
+#     "KATNI ARTO - MP21",
+#     "KHANDWA ARTO - MP12",
+#     "KHARGONE ARTO - MP10",
+#     "MANDLA DTO - MP51",
+#     "MANDSAUR ARTO - MP14",
+#     "MORENA DTO - MP6",
+#     "NARSINGHPUR DTO - MP49",
+#     "NEEMUCH DTO - MP44",
+#     "NIWARI DTO - MP71",
+#     "PANNA DTO - MP35",
+#     "RAISEN DTO - MP38",
+#     "RAJGARH DTO - MP39",
+#     "RATLAM DTO - MP43",
+#     "REWA RTO - MP17",
+#     "SAGAR RTO - MP15",
+#     "SATNA ARTO - MP19",
+#     "SEHORE DTO - MP37",
+#     "SEONI ARTO - MP22",
+#     "SHAHDOL RTO - MP18",
+#     "SHAJAPUR DTO - MP42",
+#     "SHEOPUR DTO - MP31",
+#     "SHIVPURI DTO - MP33",
+#     "SIDHI DTO - MP53",
+#     "SINGROLI DTO - MP66",
+#     "STATE TRANSPORT AUTHORITY - MP999",
+#     "TIKAMGARH DTO - MP36",
+#     "UJJAIN RTO - MP13",
+#     "UMARIA DTO - MP54",
+#     "VIDISHA DTO - MP40"
+# ]
+
 #uttarakhand
 # RTO_TO_SCRAPE = [
 #     "ALMORA RTO - UK1",
@@ -803,37 +917,7 @@ RTO_TO_SCRAPE = [
 #     "UTTARKASHI ARTO - UK10",
 #     "VIKAS NAGAR ARTO - UK16"
 # ]
-# RTO_TO_SCRAPE = [
-#     "ANJAW - AR17",
-#     "Bichom - AR28",
-#     "CHANGLANG - AR12",
-#     "DIBANG VALLEY - AR10",
-#     "EAST KAMENG - AR5",
-#     "EAST SIANG - AR9",
-#     "ITANAGAR CAPITAL REGION - AR1",
-#     "KAMLE - AR23",
-#     "Keyi Panyor - AR27",
-#     "KRA-DAADI - AR19",
-#     "KURUNG KUMEY - AR15",
-#     "LEPARADA - AR25",
-#     "LOHIT - AR11",
-#     "LONGDING - AR18",
-#     "LOWER DIBANG VALLEY - AR16",
-#     "LOWER SIANG - AR22",
-#     "LOWER SUBANSIRI - AR6",
-#     "NAMSAI - AR20",
-#     "PAKKE-KESANG - AR24",
-#     "SHI-YOMI - AR26",
-#     "SIANG - AR21",
-#     "STATE TRANSPORT AUTHORITY - AR99",
-#     "TAWANG - AR3",
-#     "TIRAP - AR13",
-#     "UPPER SIANG - AR14",
-#     "UPPER SUBANSIRI - AR7",
-#     "WEST KAMENG - AR4",
-#     "WEST SIANG - AR8",
-#     "YUPIA - AR2"
-# ]
+
 # RTO_TO_SCRAPE = [
 #         "Authorised Testing Centre (TUV SUD), Ranchi - JH201",
 #         "Authorized Fitness Centre(VAHAN),Dhanbad - JH202",
@@ -1307,11 +1391,20 @@ class VahanScraper:
                 time.sleep(1)  # Wait between selections
     
     def select_fuel_electric(self):
-        """Select ELECTRIC(BOV) fuel option"""
-        return self.select_checkbox(
+        """Select both ELECTRIC(BOV) and PURE EV fuel options"""
+        # Select ELECTRIC(BOV)
+        self.select_checkbox(
             "//*[@id='fuel']/tbody/tr[8]/td/div/div[2]/span",
             "//*[@id='fuel']/tbody/tr[8]/td/label",
             "ELECTRIC(BOV) fuel"
+        )
+        time.sleep(1)  # Wait between selections
+        
+        # Select PURE EV
+        self.select_checkbox(
+            "//*[@id='fuel']/tbody/tr[22]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[22]/td/label",
+            "PURE EV fuel"
         )
     
     def refresh_filters(self):
@@ -1319,41 +1412,54 @@ class VahanScraper:
         return self.click_element("/html/body/form/div[2]/div/div/div[3]/div/div[1]/div[1]/span/button", "Refresh filters")
     
     def select_vehicle_classes(self, classes):
-        """Select vehicle classes for E3W"""
+        """Select vehicle classes for E2W, E3W, and other categories"""
         class_options = {
-            # L-3G and L-3P (E-Rickshaw types)
-            'E_RICKSHAW_CART_G': {
-                'label': "//*[@id='VhClass']/tbody/tr[37]/td/label",
-                'checkbox': "//*[@id='VhClass']/tbody/tr[37]/td/div/div[2]/span",
-                'description': "L-3G = E-Rickshaw With Cart (G)"
+            # E2W Categories
+            'M_CYCLE_SCOOTER': {
+                'label': "//*[@id='VhClass']/tbody/tr[1]/td/label",
+                'checkbox': "//*[@id='VhClass']/tbody/tr[1]/td/div/div[2]/span",
+                'description': "M-CYCLE/SCOOTER"
             },
+            'M_CYCLE_SCOOTER_SIDE_CAR': {
+                'label': "//*[@id='VhClass']/tbody/tr[2]/td/label",
+                'checkbox': "//*[@id='VhClass']/tbody/tr[2]/td/div/div[2]/span",
+                'description': "M-CYCLE/SCOOTER-WITH SIDE CAR"
+            },
+            'MOPED': {
+                'label': "//*[@id='VhClass']/tbody/tr[3]/td/label",
+                'checkbox': "//*[@id='VhClass']/tbody/tr[3]/td/div/div[2]/span",
+                'description': "MOPED"
+            },
+            # E3W Categories
             'E_RICKSHAW_P': {
                 'label': "//*[@id='VhClass']/tbody/tr[38]/td/label",
                 'checkbox': "//*[@id='VhClass']/tbody/tr[38]/td/div/div[2]/span",
-                'description': "L-3P = E-Rickshaw (P)"
+                'description': "E-RICKSHAW(P)"
             },
-            # L-5P and L-5G (Three Wheeler types)
-            'THREE_WHEELER_PASSENGER': {
+            'E_RICKSHAW_CART_G': {
+                'label': "//*[@id='VhClass']/tbody/tr[37]/td/label",
+                'checkbox': "//*[@id='VhClass']/tbody/tr[37]/td/div/div[2]/span",
+                'description': "E-RICKSHAW WITH CART(G)"
+            },
+            'THREE_WHEELER_P': { 
                 'label': "//*[@id='VhClass']/tbody/tr[40]/td/label",
                 'checkbox': "//*[@id='VhClass']/tbody/tr[40]/td/div/div[2]/span",
-                'description': "L-5P = THREE WHEELER (PASSENGER)"
+                'description': "THREE WHEELER (PASSENGER)"
             },
-            'THREE_WHEELER_GOODS': {
+            'THREE_WHEELER_G': {
                 'label': "//*[@id='VhClass']/tbody/tr[41]/td/label",
                 'checkbox': "//*[@id='VhClass']/tbody/tr[41]/td/div/div[2]/span",
-                'description': "L-5G = THREE WHEELER (GOODS)"
+                'description': "THREE WHEELER (GOODS)"
             }
         }
         
         print(f"Selecting vehicle classes: {classes}")
-        for class_type in classes:
-            if class_type in class_options:
-                option = class_options[class_type] 
-                print(f"Selecting: {option['description']}")
+        for class_name in classes:
+            if class_name in class_options:
                 self.select_checkbox(
-                    option['checkbox'],
-                    option['label'],
-                    f"Vehicle class: {class_type} ({option['description']})"
+                    class_options[class_name]['checkbox'],
+                    class_options[class_name]['label'],
+                    f"Vehicle class: {class_options[class_name]['description']}"
                 )
                 time.sleep(1)  # Wait between selections
     
@@ -1454,7 +1560,10 @@ class VahanScraper:
             self.select_fuel_electric()
             
             # Select specific vehicle classes based on product type
-            if product_type == "L3G":
+            if product_type == "E2W":
+                print("🔄 Selecting E2W vehicle classes...")
+                self.select_vehicle_classes(['M_CYCLE_SCOOTER', 'M_CYCLE_SCOOTER_SIDE_CAR', 'MOPED'])
+            elif product_type == "L3G":
                 print("🔄 Selecting L-3G vehicle class...")
                 self.select_vehicle_classes(['E_RICKSHAW_CART_G'])
             elif product_type == "L3P":
@@ -1462,10 +1571,10 @@ class VahanScraper:
                 self.select_vehicle_classes(['E_RICKSHAW_P'])
             elif product_type == "L5G":
                 print("🔄 Selecting L-5G vehicle class...")
-                self.select_vehicle_classes(['THREE_WHEELER_GOODS'])
+                self.select_vehicle_classes(['THREE_WHEELER_G'])
             elif product_type == "L5P":
                 print("🔄 Selecting L-5P vehicle class...")
-                self.select_vehicle_classes(['THREE_WHEELER_PASSENGER'])
+                self.select_vehicle_classes(['THREE_WHEELER_P'])
             # E2W doesn't need specific vehicle class selection
             
             # Second refresh after filters
