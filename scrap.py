@@ -640,7 +640,8 @@ VEHICLE_CLASSES_CONFIG = {
     "L3G": ["E_RICKSHAW_CART_G"],
     "L3P": ["E_RICKSHAW_P"],
     "L5G": ["THREE_WHEELER_G"],
-    "L5P": ["THREE_WHEELER_P"]
+    "L5P": ["THREE_WHEELER_P"],
+    "ICE": ["M_CYCLE_SCOOTER", "M_CYCLE_SCOOTER_SIDE_CAR", "MOPED"]
 }
 
 # VEHICLE_CATEGORIES = {
@@ -655,7 +656,7 @@ VEHICLE_CLASSES_CONFIG = {
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["maharashtra"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["E2W"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
+PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 
 
@@ -961,6 +962,39 @@ class VahanScraper:
             "PURE EV fuel"
         )
     
+    def select_fuel_ice(self):
+        """Select ICE fuel options (CNG ONLY, PETROL, PETROL/CNG, PETROL/ETHANOL)"""
+        # Select CNG ONLY
+        self.select_checkbox(
+            "//*[@id='fuel']/tbody/tr[1]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[1]/td/label",
+            "CNG ONLY fuel"
+        )
+        time.sleep(1)  # Wait between selections
+        
+        # Select PETROL
+        self.select_checkbox(
+            "//*[@id='fuel']/tbody/tr[15]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[15]/td/label",
+            "PETROL fuel"
+        )
+        time.sleep(1)  # Wait between selections
+        
+        # Select PETROL/CNG
+        self.select_checkbox(
+            "//*[@id='fuel']/tbody/tr[16]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[16]/td/label",
+            "PETROL/CNG fuel"
+        )
+        time.sleep(1)  # Wait between selections
+        
+        # Select PETROL/ETHANOL
+        self.select_checkbox(
+            "//*[@id='fuel']/tbody/tr[17]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[17]/td/label",
+            "PETROL/ETHANOL fuel"
+        )
+    
     def refresh_filters(self):
         """Click second refresh button after filters"""
         return self.click_element("/html/body/form/div[2]/div/div/div[3]/div/div[1]/div[1]/span/button", "Refresh filters")
@@ -1109,9 +1143,13 @@ class VahanScraper:
             vehicle_categories = VEHICLE_CLASSES_CONFIG.get(product_type, [])
             self.select_vehicle_categories(vehicle_categories)
             
-            # Select fuel type (electric)
-            print("🔄 Selecting ELECTRIC fuel type...")
-            self.select_fuel_electric()
+            # Select fuel type based on product type
+            if product_type == "ICE":
+                print("🔄 Selecting ICE fuel types...")
+                self.select_fuel_ice()
+            else:
+                print("🔄 Selecting ELECTRIC fuel type...")
+                self.select_fuel_electric()
             
             # Select specific vehicle classes based on product type
             if product_type == "E2W":
@@ -1129,6 +1167,9 @@ class VahanScraper:
             elif product_type == "L5P":
                 print("🔄 Selecting L-5P vehicle class...")
                 self.select_vehicle_classes(['THREE_WHEELER_P'])
+            elif product_type == "ICE":
+                print("🔄 Selecting ICE vehicle classes...")
+                self.select_vehicle_classes(['M_CYCLE_SCOOTER', 'M_CYCLE_SCOOTER_SIDE_CAR', 'MOPED'])
             # E2W doesn't need specific vehicle class selection
             
             # Second refresh after filters
