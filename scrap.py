@@ -27,6 +27,7 @@ STATES_CONFIG = {
     "jammu_kashmir": "/html/body/div[3]/div/ul/li[16]",
     "assam": "/html/body/div[3]/div/ul/li[5]",
     "manipur": "/html/body/div[3]/div/ul/li[23]",
+    "delhi": "/html/body/div[3]/div/ul/li[10]",
     # Add more states here if needed 
     # "maharashtra": "//*[@id='j_idt37_27']", 
     # "karnataka": "//*[@id='j_idt37_29']",
@@ -629,7 +630,33 @@ RTO_CONFIG = {
         "UDHAM SINGH NAGAR ARTO - UK6": "//ul[@id='selectedRto_items']/li[20]",
         "UTTARKASHI ARTO - UK10": "//ul[@id='selectedRto_items']/li[21]",
         "VIKAS NAGAR ARTO - UK16": "//ul[@id='selectedRto_items']/li[22]"
+    },
+    "delhi": {
+        "BURARI AUTO UNIT - DL53": "//ul[@id='selectedRto_items']/li[2]",
+        "BURARI TAXI UNIT - DL52": "//ul[@id='selectedRto_items']/li[3]",
+        "DWARKA - DL9": "//ul[@id='selectedRto_items']/li[4]",
+        "I P ESTATE - DL2": "//ul[@id='selectedRto_items']/li[5]",
+        "JANAKPURI - DL4": "//ul[@id='selectedRto_items']/li[6]",
+        "JHULJHULI FITNESS CENTER - DL207": "//ul[@id='selectedRto_items']/li[7]",
+        "KAIR CLUSTER BUS FITNESS CENTER - DL205": "//ul[@id='selectedRto_items']/li[8]",
+        "KUSHAKNALA CLUSTER BUS FITNESS CENTER - DL206": "//ul[@id='selectedRto_items']/li[9]",
+        "LADO SARAI FITNESS CENTER - DL201": "//ul[@id='selectedRto_items']/li[10]",
+        "LONI ROAD - DL5": "//ul[@id='selectedRto_items']/li[11]",
+        "MALL ROAD - DL1": "//ul[@id='selectedRto_items']/li[12]",
+        "MAYUR VIHAR  - DL7": "//ul[@id='selectedRto_items']/li[13]",
+        "RAJA GARDEN FITNESS CENTER - DL204": "//ul[@id='selectedRto_items']/li[14]",
+        "RAJOURI GARDEN - DL10": "//ul[@id='selectedRto_items']/li[15]",
+        "RAJPUR ROAD/VIU BURARI - DL51": "//ul[@id='selectedRto_items']/li[16]",
+        "ROHINI - DL11": "//ul[@id='selectedRto_items']/li[17]",
+        "SARAI KALE KHAN - DL6": "//ul[@id='selectedRto_items']/li[18]",
+        "SHAKUR BASTI FITNESS CENTER - DL202": "//ul[@id='selectedRto_items']/li[19]",
+        "SOUTH DELHI - DL3": "//ul[@id='selectedRto_items']/li[20]",
+        "SURAJMAL VIHAR - DL13": "//ul[@id='selectedRto_items']/li[21]",
+        "VASANT VIHAR - DL12": "//ul[@id='selectedRto_items']/li[22]",
+        "VISHWAS NAGAR FITNESS CENTER - DL203": "//ul[@id='selectedRto_items']/li[23]",
+        "WAZIRPUR - DL8": "//ul[@id='selectedRto_items']/li[24]"
     }
+
     # Add RTOs for other states here
 }
 
@@ -654,45 +681,36 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["Chhattisgarh"]  # Add more states as needed
+STATES_TO_SCRAPE = ["delhi"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 
 RTO_TO_SCRAPE = [
-    "AIG(F/P) PHQ - CG3",
-    "Ambikapur RTO - CG15",
-    "BAIKUNTHPUR DTO - CG16",
-    "Baloda Bazar DTO - CG22",
-    "Balod DTO - CG24",
-    "Balrampur DTO - CG30",
-    "Bemetara DTO - CG25",
-    "Bijapur DTO - CG20",
-    "Bilaspur RTO - CG10",
-    "Dantewada DTO - CG18",
-    "Dhamtari DTO - CG5",
-    "DURG RTO - CG7",
-    "Gariyaband DTO - CG23",
-    "Gaurela-Pendra-Marwahi DTO - CG31",
-    "JAGDALPUR RTO - CG17",
-    "Janjgir Champa DTO - CG11",
-    "Jashpur DTO - CG14",
-    "KANKER DTO - CG19",
-    "KAWARDHA DTO - CG9",
-    "KONDAGAON DTO - CG27",
-    "Korba DTO - CG12",
-    "Mahasamund DTO - CG6",
-    "Mungeli DTO - CG28",
-    "Narayanpur DTO - CG21",
-    "Raigarh DTO - CG13",
-    "Raipur RTO - CG4",
-    "Rajnandgaon ARTO - CG8",
-    "RTA TC NAWA RAIPUR - CG998",
-    "State Transport Authority - CG99",
-    "Sukma DTO - CG26",
-    "Surajpur DTO - CG29"
+    "BURARI AUTO UNIT - DL53",
+    "BURARI TAXI UNIT - DL52",
+    "DWARKA - DL9",
+    "I P ESTATE - DL2",
+    "JANAKPURI - DL4",
+    "JHULJHULI FITNESS CENTER - DL207",
+    "KAIR CLUSTER BUS FITNESS CENTER - DL205",
+    "KUSHAKNALA CLUSTER BUS FITNESS CENTER - DL206",
+    "LADO SARAI FITNESS CENTER - DL201",
+    "LONI ROAD - DL5",
+    "MALL ROAD - DL1",
+    "MAYUR VIHAR  - DL7",
+    "RAJA GARDEN FITNESS CENTER - DL204",
+    "RAJOURI GARDEN - DL10",
+    "RAJPUR ROAD/VIU BURARI - DL51",
+    "ROHINI - DL11",
+    "SARAI KALE KHAN - DL6",
+    "SHAKUR BASTI FITNESS CENTER - DL202",
+    "SOUTH DELHI - DL3",
+    "SURAJMAL VIHAR - DL13",
+    "VASANT VIHAR - DL12",
+    "VISHWAS NAGAR FITNESS CENTER - DL203",
+    "WAZIRPUR - DL8"
 ]
-
 
 
 # Other configurations
