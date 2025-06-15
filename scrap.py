@@ -654,72 +654,51 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["madhya_pradesh"]  # Add more states as needed
+STATES_TO_SCRAPE = ["Chhattisgarh"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 
 RTO_TO_SCRAPE = [
-    "AGAR MALWA RTO - MP70",
-    "ALIRAJPUR DTO - MP69",
-    "ANUPPUR DTO - MP65",
-    "ASHOKNAGAR DTO - MP67",
-    "BADWANI DTO - MP46",
-    "BALAGHAT DTO - MP50",
-    "BETUL DTO - MP48",
-    "BHIND DTO - MP30",
-    "BHOPAL RTO - MP4",
-    "BURHANPUR DTO - MP68",
-    "CHATTARPUR  ARTO - MP16",
-    "CHHINDWARA ARTO - MP28",
-    "DAMOH DTO - MP34",
-    "DATIA DTO - MP32",
-    "DEWAS DTO - MP41",
-    "DHAR ARTO - MP11",
-    "DINDORI DTO - MP52",
-    "GUNA DTO - MP8",
-    "GWALIOR RTO - MP7",
-    "HARDA DTO - MP47",
-    "HOSANGABAD DTO - MP5",
-    "INDORE RTO - MP9",
-    "JABALPUR RTO - MP20",
-    "JHABUA DTO - MP45",
-    "KATNI ARTO - MP21",
-    "KHANDWA ARTO - MP12",
-    "KHARGONE ARTO - MP10",
-    "MANDLA DTO - MP51",
-    "MANDSAUR ARTO - MP14",
-    "MORENA DTO - MP6",
-    "NARSINGHPUR DTO - MP49",
-    "NEEMUCH DTO - MP44",
-    "NIWARI DTO - MP71",
-    "PANNA DTO - MP35",
-    "RAISEN DTO - MP38",
-    "RAJGARH DTO - MP39",
-    "RATLAM DTO - MP43",
-    "REWA RTO - MP17",
-    "SAGAR RTO - MP15",
-    "SATNA ARTO - MP19",
-    "SEHORE DTO - MP37",
-    "SEONI ARTO - MP22",
-    "SHAHDOL RTO - MP18",
-    "SHAJAPUR DTO - MP42",
-    "SHEOPUR DTO - MP31",
-    "SHIVPURI DTO - MP33",
-    "SIDHI DTO - MP53",
-    "SINGROLI DTO - MP66",
-    "STATE TRANSPORT AUTHORITY - MP999",
-    "TIKAMGARH DTO - MP36",
-    "UJJAIN RTO - MP13",
-    "UMARIA DTO - MP54",
-    "VIDISHA DTO - MP40"
+    "AIG(F/P) PHQ - CG3",
+    "Ambikapur RTO - CG15",
+    "BAIKUNTHPUR DTO - CG16",
+    "Baloda Bazar DTO - CG22",
+    "Balod DTO - CG24",
+    "Balrampur DTO - CG30",
+    "Bemetara DTO - CG25",
+    "Bijapur DTO - CG20",
+    "Bilaspur RTO - CG10",
+    "Dantewada DTO - CG18",
+    "Dhamtari DTO - CG5",
+    "DURG RTO - CG7",
+    "Gariyaband DTO - CG23",
+    "Gaurela-Pendra-Marwahi DTO - CG31",
+    "JAGDALPUR RTO - CG17",
+    "Janjgir Champa DTO - CG11",
+    "Jashpur DTO - CG14",
+    "KANKER DTO - CG19",
+    "KAWARDHA DTO - CG9",
+    "KONDAGAON DTO - CG27",
+    "Korba DTO - CG12",
+    "Mahasamund DTO - CG6",
+    "Mungeli DTO - CG28",
+    "Narayanpur DTO - CG21",
+    "Raigarh DTO - CG13",
+    "Raipur RTO - CG4",
+    "Rajnandgaon ARTO - CG8",
+    "RTA TC NAWA RAIPUR - CG998",
+    "State Transport Authority - CG99",
+    "Sukma DTO - CG26",
+    "Surajpur DTO - CG29"
 ]
+
 
 
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = True 
+HEADLESS_MODE = True
 DOWNLOAD_CSV = True
 
 class VahanScraper:
