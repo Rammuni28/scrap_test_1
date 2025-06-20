@@ -681,42 +681,69 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["delhi"]  # Add more states as needed
+STATES_TO_SCRAPE = ["bihar"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
-
 RTO_TO_SCRAPE = [
-    "BURARI AUTO UNIT - DL53",
-    "BURARI TAXI UNIT - DL52",
-    "DWARKA - DL9",
-    "I P ESTATE - DL2",
-    "JANAKPURI - DL4",
-    "JHULJHULI FITNESS CENTER - DL207",
-    "KAIR CLUSTER BUS FITNESS CENTER - DL205",
-    "KUSHAKNALA CLUSTER BUS FITNESS CENTER - DL206",
-    "LADO SARAI FITNESS CENTER - DL201",
-    "LONI ROAD - DL5",
-    "MALL ROAD - DL1",
-    "MAYUR VIHAR  - DL7",
-    "RAJA GARDEN FITNESS CENTER - DL204",
-    "RAJOURI GARDEN - DL10",
-    "RAJPUR ROAD/VIU BURARI - DL51",
-    "ROHINI - DL11",
-    "SARAI KALE KHAN - DL6",
-    "SHAKUR BASTI FITNESS CENTER - DL202",
-    "SOUTH DELHI - DL3",
-    "SURAJMAL VIHAR - DL13",
-    "VASANT VIHAR - DL12",
-    "VISHWAS NAGAR FITNESS CENTER - DL203",
-    "WAZIRPUR - DL8"
+    "ARARIA - BR38",
+    "ARAWAL - BR56",
+    "AURANGABAD - BR26",
+    "BANKA - BR51",
+    "BEGUSARAI - BR9",
+    "BETTIAH - BR22",
+    "BHABHUA - BR45",
+    "BHAGALPUR - BR10",
+    "BHAGALPUR RTA - BR103",
+    "BHOJPUR - BR3",
+    "BUXUR - BR44",
+    "CHAPARA - BR4",
+    "CHAPRA RTA - BR109",
+    "DARBHANGA - BR7",
+    "DARBHANGA RTA - BR102",
+    "GAYA - BR2",
+    "GAYA RTA - BR107",
+    "GOPALGANJ - BR28",
+    "JAMUI - BR46",
+    "JEHANABAD - BR25",
+    "KATIHAR - BR39",
+    "KHAGARIA - BR34",
+    "KISHANGANJ - BR37",
+    "LAKHISARAI - BR53",
+    "MADHEPURA - BR43",
+    "MADHUBANI - BR32",
+    "MOTIHARI - BR5",
+    "M/S MURARI AUTO,Patna - BR201",
+    "MUNGER - BR8",
+    "MUNGER RTA - BR104",
+    "MUZAFFARPUR - BR6",
+    "MUZAFFARPUR RTA - BR106",
+    "NALANDA - BR21",
+    "NAWADA - BR27",
+    "PATNA - BR1",
+    "PATNA RTA - BR101",
+    "PURNEA - BR11",
+    "PURNEA RTA - BR108",
+    "ROHTAS - BR24",
+    "SAHARSA - BR19",
+    "SAHARSA RTA - BR105",
+    "SAMASTIPUR - BR33",
+    "SHEIKHPURA - BR52",
+    "SHEOHAR - BR55",
+    "SITAMARHI - BR30",
+    "SIWAN - BR29",
+    "STA BIHAR - BR999",
+    "SUPAUL - BR50",
+    "VAISHALI - BR31"
 ]
+
+
 
 
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = True
+HEADLESS_MODE = False
 DOWNLOAD_CSV = True
 
 class VahanScraper:
