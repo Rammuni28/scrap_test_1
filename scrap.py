@@ -655,7 +655,46 @@ RTO_CONFIG = {
         "VASANT VIHAR - DL12": "//ul[@id='selectedRto_items']/li[22]",
         "VISHWAS NAGAR FITNESS CENTER - DL203": "//ul[@id='selectedRto_items']/li[23]",
         "WAZIRPUR - DL8": "//ul[@id='selectedRto_items']/li[24]"
-    }
+    },
+    "assam": {
+        "BARPETA - AS15": "//ul[@id='selectedRto_items']/li[2]",
+        "BASKA - AS28": "//ul[@id='selectedRto_items']/li[3]",
+        "BISWANATH CHARIALI - AS32": "//ul[@id='selectedRto_items']/li[4]",
+        "BONGAIGAON - AS19": "//ul[@id='selectedRto_items']/li[5]",
+        "CACHAR - AS11": "//ul[@id='selectedRto_items']/li[6]",
+        "CHARAIDEO - AS33": "//ul[@id='selectedRto_items']/li[7]",
+        "CHIRANG - AS26": "//ul[@id='selectedRto_items']/li[8]",
+        "DARRANG - AS13": "//ul[@id='selectedRto_items']/li[9]",
+        "DHEMAJI - AS22": "//ul[@id='selectedRto_items']/li[10]",
+        "DHUBRI - AS17": "//ul[@id='selectedRto_items']/li[11]",
+        "DIBRUGARH - AS6": "//ul[@id='selectedRto_items']/li[12]",
+        "DIMA HASAO - AS8": "//ul[@id='selectedRto_items']/li[13]",
+        "GOALPARA - AS18": "//ul[@id='selectedRto_items']/li[14]",
+        "GOLAGHAT - AS5": "//ul[@id='selectedRto_items']/li[15]",
+        "HAILAKANDI - AS24": "//ul[@id='selectedRto_items']/li[16]",
+        "HOJAI - AS31": "//ul[@id='selectedRto_items']/li[17]",
+        "JORHAT - AS3": "//ul[@id='selectedRto_items']/li[18]",
+        "KAMRUP - AS1": "//ul[@id='selectedRto_items']/li[19]",
+        "KAMRUP(RURAL) - AS25": "//ul[@id='selectedRto_items']/li[20]",
+        "KARBI ANGLONG - AS9": "//ul[@id='selectedRto_items']/li[21]",
+        "KARIMGANJ - AS10": "//ul[@id='selectedRto_items']/li[22]",
+        "KOKRAJHAR - AS16": "//ul[@id='selectedRto_items']/li[23]",
+        "LAKHIMPUR - AS7": "//ul[@id='selectedRto_items']/li[24]",
+        "MAJULI - AS29": "//ul[@id='selectedRto_items']/li[25]",
+        "MORIGAON - AS21": "//ul[@id='selectedRto_items']/li[26]",
+        "NAGAON - AS2": "//ul[@id='selectedRto_items']/li[27]",
+        "NALBARI - AS14": "//ul[@id='selectedRto_items']/li[28]",
+        "NIAIMT,CACHAR - AS200": "//ul[@id='selectedRto_items']/li[29]",
+        "NIAIMT,HAILAKANDI - AS202": "//ul[@id='selectedRto_items']/li[30]",
+        "NIAIMT,KARIMGANJ - AS201": "//ul[@id='selectedRto_items']/li[31]",
+        "SIVASAGAR - AS4": "//ul[@id='selectedRto_items']/li[32]",
+        "SONITPUR - AS12": "//ul[@id='selectedRto_items']/li[33]",
+        "SOUTH SALMARA - AS34": "//ul[@id='selectedRto_items']/li[34]",
+        "STATE TRANSPORT AUTHORITY - AS999": "//ul[@id='selectedRto_items']/li[35]",
+        "TINSUKIA - AS23": "//ul[@id='selectedRto_items']/li[36]",
+        "UDALGURI - AS27": "//ul[@id='selectedRto_items']/li[37]"
+    },
+
 
     # Add RTOs for other states here
 }
@@ -681,61 +720,49 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["bihar"]  # Add more states as needed
+STATES_TO_SCRAPE = ["assam"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2025","2024"]
 PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 RTO_TO_SCRAPE = [
-    "ARARIA - BR38",
-    "ARAWAL - BR56",
-    "AURANGABAD - BR26",
-    "BANKA - BR51",
-    "BEGUSARAI - BR9",
-    "BETTIAH - BR22",
-    "BHABHUA - BR45",
-    "BHAGALPUR - BR10",
-    "BHAGALPUR RTA - BR103",
-    "BHOJPUR - BR3",
-    "BUXUR - BR44",
-    "CHAPARA - BR4",
-    "CHAPRA RTA - BR109",
-    "DARBHANGA - BR7",
-    "DARBHANGA RTA - BR102",
-    "GAYA - BR2",
-    "GAYA RTA - BR107",
-    "GOPALGANJ - BR28",
-    "JAMUI - BR46",
-    "JEHANABAD - BR25",
-    "KATIHAR - BR39",
-    "KHAGARIA - BR34",
-    "KISHANGANJ - BR37",
-    "LAKHISARAI - BR53",
-    "MADHEPURA - BR43",
-    "MADHUBANI - BR32",
-    "MOTIHARI - BR5",
-    "M/S MURARI AUTO,Patna - BR201",
-    "MUNGER - BR8",
-    "MUNGER RTA - BR104",
-    "MUZAFFARPUR - BR6",
-    "MUZAFFARPUR RTA - BR106",
-    "NALANDA - BR21",
-    "NAWADA - BR27",
-    "PATNA - BR1",
-    "PATNA RTA - BR101",
-    "PURNEA - BR11",
-    "PURNEA RTA - BR108",
-    "ROHTAS - BR24",
-    "SAHARSA - BR19",
-    "SAHARSA RTA - BR105",
-    "SAMASTIPUR - BR33",
-    "SHEIKHPURA - BR52",
-    "SHEOHAR - BR55",
-    "SITAMARHI - BR30",
-    "SIWAN - BR29",
-    "STA BIHAR - BR999",
-    "SUPAUL - BR50",
-    "VAISHALI - BR31"
+    "BARPETA - AS15",
+    "BASKA - AS28",
+    "BISWANATH CHARIALI - AS32",
+    "BONGAIGAON - AS19",
+    "CACHAR - AS11",
+    "CHARAIDEO - AS33",
+    "CHIRANG - AS26",
+    "DARRANG - AS13",
+    "DHEMAJI - AS22",
+    "DHUBRI - AS17",
+    "DIBRUGARH - AS6",
+    "DIMA HASAO - AS8",
+    "GOALPARA - AS18",
+    "GOLAGHAT - AS5",
+    "HAILAKANDI - AS24",
+    "HOJAI - AS31",
+    "JORHAT - AS3",
+    "KAMRUP - AS1",
+    "KAMRUP(RURAL) - AS25",
+    "KARBI ANGLONG - AS9",
+    "KARIMGANJ - AS10",
+    "KOKRAJHAR - AS16",
+    "LAKHIMPUR - AS7",
+    "MAJULI - AS29",
+    "MORIGAON - AS21",
+    "NAGAON - AS2",
+    "NALBARI - AS14",
+    "NIAIMT,CACHAR - AS200",
+    "NIAIMT,HAILAKANDI - AS202",
+    "NIAIMT,KARIMGANJ - AS201",
+    "SIVASAGAR - AS4",
+    "SONITPUR - AS12",
+    "SOUTH SALMARA - AS34",
+    "STATE TRANSPORT AUTHORITY - AS999",
+    "TINSUKIA - AS23",
+    "UDALGURI - AS27"
 ]
+
 
 
 
@@ -743,7 +770,7 @@ RTO_TO_SCRAPE = [
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = False
+HEADLESS_MODE = True        
 DOWNLOAD_CSV = True
 
 class VahanScraper:
