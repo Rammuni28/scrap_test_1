@@ -721,8 +721,8 @@ VEHICLE_CLASSES_CONFIG = {
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["madhya_pradesh"]  # Add more states as needed
-YEARS_TO_SCRAPE = ["2025"]
-PRODUCTS_TO_SCRAPE = ["L5G"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
+YEARS_TO_SCRAPE = ["2025","2024"]
+PRODUCTS_TO_SCRAPE = ["E2W"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 RTO_TO_SCRAPE = [
     "AGAR MALWA RTO - MP70",
