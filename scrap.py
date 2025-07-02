@@ -720,47 +720,64 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["assam"]  # Add more states as needed
-YEARS_TO_SCRAPE = ["2025","2024"]
-PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
+STATES_TO_SCRAPE = ["madhya_pradesh"]  # Add more states as needed
+YEARS_TO_SCRAPE = ["2025"]
+PRODUCTS_TO_SCRAPE = ["L5G"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 RTO_TO_SCRAPE = [
-    "BARPETA - AS15",
-    "BASKA - AS28",
-    "BISWANATH CHARIALI - AS32",
-    "BONGAIGAON - AS19",
-    "CACHAR - AS11",
-    "CHARAIDEO - AS33",
-    "CHIRANG - AS26",
-    "DARRANG - AS13",
-    "DHEMAJI - AS22",
-    "DHUBRI - AS17",
-    "DIBRUGARH - AS6",
-    "DIMA HASAO - AS8",
-    "GOALPARA - AS18",
-    "GOLAGHAT - AS5",
-    "HAILAKANDI - AS24",
-    "HOJAI - AS31",
-    "JORHAT - AS3",
-    "KAMRUP - AS1",
-    "KAMRUP(RURAL) - AS25",
-    "KARBI ANGLONG - AS9",
-    "KARIMGANJ - AS10",
-    "KOKRAJHAR - AS16",
-    "LAKHIMPUR - AS7",
-    "MAJULI - AS29",
-    "MORIGAON - AS21",
-    "NAGAON - AS2",
-    "NALBARI - AS14",
-    "NIAIMT,CACHAR - AS200",
-    "NIAIMT,HAILAKANDI - AS202",
-    "NIAIMT,KARIMGANJ - AS201",
-    "SIVASAGAR - AS4",
-    "SONITPUR - AS12",
-    "SOUTH SALMARA - AS34",
-    "STATE TRANSPORT AUTHORITY - AS999",
-    "TINSUKIA - AS23",
-    "UDALGURI - AS27"
+    "AGAR MALWA RTO - MP70",
+    "ALIRAJPUR DTO - MP69",
+    "ANUPPUR DTO - MP65",
+    "ASHOKNAGAR DTO - MP67",
+    "BADWANI DTO - MP46",
+    "BALAGHAT DTO - MP50",
+    "BETUL DTO - MP48",
+    "BHIND DTO - MP30",
+    "BHOPAL RTO - MP4",
+    "BURHANPUR DTO - MP68",
+    "CHATTARPUR  ARTO - MP16",
+    "CHHINDWARA ARTO - MP28",
+    "DAMOH DTO - MP34",
+    "DATIA DTO - MP32",
+    "DEWAS DTO - MP41",
+    "DHAR ARTO - MP11",
+    "DINDORI DTO - MP52",
+    "GUNA DTO - MP8",
+    "GWALIOR RTO - MP7",
+    "HARDA DTO - MP47",
+    "HOSANGABAD DTO - MP5",
+    "INDORE RTO - MP9",
+    "JABALPUR RTO - MP20",
+    "JHABUA DTO - MP45",
+    "KATNI ARTO - MP21",
+    "KHANDWA ARTO - MP12",
+    "KHARGONE ARTO - MP10",
+    "MANDLA DTO - MP51",
+    "MANDSAUR ARTO - MP14",
+    "MORENA DTO - MP6",
+    "NARSINGHPUR DTO - MP49",
+    "NEEMUCH DTO - MP44",
+    "NIWARI DTO - MP71",
+    "PANNA DTO - MP35",
+    "RAISEN DTO - MP38",
+    "RAJGARH DTO - MP39",
+    "RATLAM DTO - MP43",
+    "REWA RTO - MP17",
+    "SAGAR RTO - MP15",
+    "SATNA ARTO - MP19",
+    "SEHORE DTO - MP37",
+    "SEONI ARTO - MP22",
+    "SHAHDOL RTO - MP18",
+    "SHAJAPUR DTO - MP42",
+    "SHEOPUR DTO - MP31",
+    "SHIVPURI DTO - MP33",
+    "SIDHI DTO - MP53",
+    "SINGROLI DTO - MP66",
+    "STATE TRANSPORT AUTHORITY - MP999",
+    "TIKAMGARH DTO - MP36",
+    "UJJAIN RTO - MP13",
+    "UMARIA DTO - MP54",
+    "VIDISHA DTO - MP40"
 ]
 
 
@@ -990,51 +1007,51 @@ class VahanScraper:
     
     def select_fuel_electric(self):
         """Select both ELECTRIC(BOV) and PURE EV fuel options"""
-        # Select ELECTRIC(BOV)
+        # Select ELECTRIC(BOV)//*[@id="fuel"]/tbody/tr[11]/td/div/div[2]/span
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[8]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[8]/td/label",
+            "//*[@id='fuel']/tbody/tr[11]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[11]/td/label",
             "ELECTRIC(BOV) fuel"
         )
         time.sleep(1)  # Wait between selections
         
-        # Select PURE EV
+        # Select PURE EV 
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[22]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[22]/td/label",
+            "//*[@id='fuel']/tbody/tr[32]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[32]/td/label",
             "PURE EV fuel"
         )
     
     def select_fuel_ice(self):
         """Select ICE fuel options (CNG ONLY, PETROL, PETROL/CNG, PETROL/ETHANOL)"""
-        # Select CNG ONLY
+        # Select CNG ONLY //*[@id="fuel"]/tbody/tr[4]/td/label
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[1]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[1]/td/label",
+            "//*[@id='fuel']/tbody/tr[4]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[4]/td/label",
             "CNG ONLY fuel"
         )
         time.sleep(1)  # Wait between selections
         
-        # Select PETROL
+        # Select PETROL 
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[15]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[15]/td/label",
+            "//*[@id='fuel']/tbody/tr[22]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[22]/td/label",
             "PETROL fuel"
         )
         time.sleep(1)  # Wait between selections
         
         # Select PETROL/CNG
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[16]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[16]/td/label",
+            "//*[@id='fuel']/tbody/tr[23]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[23]/td/label",
             "PETROL/CNG fuel"
         )
         time.sleep(1)  # Wait between selections
         
-        # Select PETROL/ETHANOL
+        # Select PETROL/ETHANOL //*[@id="fuel"]/tbody/tr[27]/td/label
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[17]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[17]/td/label",
+            "//*[@id='fuel']/tbody/tr[27]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[27]/td/label",
             "PETROL/ETHANOL fuel"
         )
     
