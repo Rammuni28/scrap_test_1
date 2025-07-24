@@ -9,6 +9,8 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import time    
 import os    
 from pathlib import Path
+import json
+from datetime import datetime
 
 # ================== CONFIGURATION SECTION ==================
 # STATES to scrape (add more state XPaths as needed)
@@ -37,7 +39,8 @@ STATES_CONFIG = {
 YEARS_CONFIG = {
     "2025": "//*[@id='selectedYear_1']",
     "2024": "//*[@id='selectedYear_2']",
-    
+    "2023": "//*[@id='selectedYear_3']",
+    "2022": "//*[@id='selectedYear_4']",
     # Add more years here if needed
     # "2022": "//*[@id='selectedYear_3']",
 }
@@ -721,7 +724,7 @@ VEHICLE_CLASSES_CONFIG = {
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
 STATES_TO_SCRAPE = ["Chhattisgarh"]  # Add more states as needed
-YEARS_TO_SCRAPE = ["2025","2024"]
+YEARS_TO_SCRAPE = ["2023","2022"]
 PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 
 RTO_TO_SCRAPE = [
@@ -768,12 +771,77 @@ X_AXIS = "//*[@id='xaxisVar_7']"
 HEADLESS_MODE = True        
 DOWNLOAD_CSV = True
 
+class ProgressTracker:
+    def __init__(self, progress_file="progress.json"):
+        self.progress_file = progress_file
+        self.progress_data = self.load_progress()
+    
+    def load_progress(self):
+        """Load existing progress from JSON file"""
+        try:
+            with open(self.progress_file, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return {}
+        except json.JSONDecodeError:
+            print(f"⚠️ Warning: {self.progress_file} is corrupted, starting fresh")
+            return {}
+    
+    def save_progress(self):
+        """Save progress to JSON file"""
+        try:
+            with open(self.progress_file, 'w') as f:
+                json.dump(self.progress_data, f, indent=2)
+        except Exception as e:
+            print(f"❌ Error saving progress: {e}")
+    
+    def get_task_key(self, state, rto, year, product):
+        """Generate unique task key"""
+        return f"{state}_{rto}_{year}_{product}"
+    
+    def update_task_status(self, state, rto, year, product, status, details=None):
+        """Update task status in progress tracking"""
+        task_key = self.get_task_key(state, rto, year, product)
+        
+        if task_key not in self.progress_data:
+            self.progress_data[task_key] = {
+                "state": state,
+                "rto": rto,
+                "year": year,
+                "product": product
+            }
+        
+        self.progress_data[task_key].update({
+            "status": status,
+            "timestamp": datetime.now().isoformat(),
+        })
+        
+        if details:
+            self.progress_data[task_key]["details"] = details
+        
+        self.save_progress()
+        print(f"📊 Progress updated: {task_key} -> {status}")
+    
+    def get_task_status(self, state, rto, year, product):
+        """Get current status of a task"""
+        task_key = self.get_task_key(state, rto, year, product)
+        return self.progress_data.get(task_key, {}).get("status", "not_started")
+    
+    def get_summary(self):
+        """Get summary of all task statuses"""
+        summary = {}
+        for task_data in self.progress_data.values():
+            status = task_data.get("status", "unknown")
+            summary[status] = summary.get(status, 0) + 1
+        return summary
+
 class VahanScraper:
     def __init__(self, headless=True, test_mode=False):
         """Initialize the scraper with Chrome driver or in test mode"""
         self.driver = None
         self.wait = None
         self.test_mode = test_mode
+        self.progress_tracker = ProgressTracker()  # Add progress tracking
         
         # Set up downloads directory in the same folder as the script
         script_dir = Path(__file__).parent.absolute()
@@ -995,8 +1063,8 @@ class VahanScraper:
         
         # Select PURE EV 
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[32]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[32]/td/label",
+            "//*[@id='fuel']/tbody/tr[34]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[34]/td/label",
             "PURE EV fuel"
         )
     
@@ -1028,8 +1096,8 @@ class VahanScraper:
         
         # Select PETROL/ETHANOL //*[@id="fuel"]/tbody/tr[27]/td/label
         self.select_checkbox(
-            "//*[@id='fuel']/tbody/tr[27]/td/div/div[2]/span",
-            "//*[@id='fuel']/tbody/tr[27]/td/label",
+            "//*[@id='fuel']/tbody/tr[28]/td/div/div[2]/span",
+            "//*[@id='fuel']/tbody/tr[28]/td/label",
             "PETROL/ETHANOL fuel"
         )
     
@@ -1088,6 +1156,234 @@ class VahanScraper:
                     f"Vehicle class: {class_options[class_name]['description']}"
                 )
                 time.sleep(1)  # Wait between selections
+    
+
+
+    def verify_all_filters_comprehensive(self, product_type):
+        """Comprehensive verification of fuel filters, vehicle classes and detect unwanted selections"""
+        print(f"\n🔍 COMPREHENSIVE FILTER VERIFICATION - {product_type}")
+        print(f"{'='*80}")
+        
+        # Wait longer for UI to update
+        time.sleep(5)
+        
+        verification_results = {
+            "fuel_filters": {"verified": [], "failed": [], "expected": []},
+            "vehicle_classes": {"verified": [], "failed": [], "expected": []},
+            "unwanted_selections": {"fuel": [], "vehicle_classes": []},
+            "overall_status": "unknown"
+        }
+        
+        # ===== 1. FUEL FILTER VERIFICATION =====
+        print(f"\n🔋 FUEL FILTER CHECK:")
+        print(f"-" * 40)
+        
+        if product_type == "ICE":
+            expected_fuel_filters = ["CNG ONLY", "PETROL", "PETROL/CNG", "PETROL/ETHANOL"]
+            fuel_rows = [4, 22, 23, 28]
+        else:
+            expected_fuel_filters = ["ELECTRIC(BOV)", "PURE EV"]
+            fuel_rows = [11, 34]  # Updated PURE EV to row 34
+        
+        verification_results["fuel_filters"]["expected"] = expected_fuel_filters
+        
+        # Check expected fuel filters
+        for filter_name, row_num in zip(expected_fuel_filters, fuel_rows):
+            is_selected = self._check_filter_checkbox("fuel", row_num, filter_name)
+            if is_selected:
+                verification_results["fuel_filters"]["verified"].append(filter_name)
+            else:
+                verification_results["fuel_filters"]["failed"].append(filter_name)
+        
+        # Check for unwanted fuel selections
+        all_fuel_rows = list(range(1, 35))  # Check all fuel rows
+        unwanted_fuel_rows = [r for r in all_fuel_rows if r not in fuel_rows]
+        
+        print(f"\n🚨 CHECKING FOR UNWANTED FUEL SELECTIONS:")
+        for row_num in unwanted_fuel_rows:
+            try:
+                # Get the fuel name from the label
+                label_element = self.driver.find_element(By.XPATH, f"//*[@id='fuel']/tbody/tr[{row_num}]/td/label")
+                fuel_name = label_element.text.strip()
+                
+                if fuel_name and self._check_filter_checkbox("fuel", row_num, fuel_name, silent=True):
+                    print(f"   ⚠️ UNWANTED FUEL SELECTED: {fuel_name} (row {row_num})")
+                    verification_results["unwanted_selections"]["fuel"].append(fuel_name)
+            except:
+                continue
+        
+        # ===== 2. VEHICLE CLASS VERIFICATION =====
+        print(f"\n🚗 VEHICLE CLASS CHECK:")
+        print(f"-" * 40)
+        
+        # Define expected vehicle classes based on product type
+        if product_type == "E2W":
+            expected_classes = ['M_CYCLE_SCOOTER', 'M_CYCLE_SCOOTER_SIDE_CAR', 'MOPED']
+            class_rows = [1, 2, 3]
+        elif product_type == "L3G":
+            expected_classes = ['E_RICKSHAW_CART_G']
+            class_rows = [37]
+        elif product_type == "L3P":
+            expected_classes = ['E_RICKSHAW_P']
+            class_rows = [38]
+        elif product_type == "L5G":
+            expected_classes = ['THREE_WHEELER_G']
+            class_rows = [41]
+        elif product_type == "L5P":
+            expected_classes = ['THREE_WHEELER_P']
+            class_rows = [40]
+        elif product_type == "ICE":
+            expected_classes = ['M_CYCLE_SCOOTER', 'M_CYCLE_SCOOTER_SIDE_CAR', 'MOPED']
+            class_rows = [1, 2, 3]
+        else:
+            expected_classes = []
+            class_rows = []
+        
+        verification_results["vehicle_classes"]["expected"] = expected_classes
+        
+        # Check expected vehicle classes
+        for class_name, row_num in zip(expected_classes, class_rows):
+            is_selected = self._check_filter_checkbox("VhClass", row_num, class_name)
+            if is_selected:
+                verification_results["vehicle_classes"]["verified"].append(class_name)
+            else:
+                verification_results["vehicle_classes"]["failed"].append(class_name)
+        
+        # Check for unwanted vehicle class selections
+        all_class_rows = list(range(1, 45))  # Check all vehicle class rows
+        unwanted_class_rows = [r for r in all_class_rows if r not in class_rows]
+        
+        print(f"\n🚨 CHECKING FOR UNWANTED VEHICLE CLASS SELECTIONS:")
+        for row_num in unwanted_class_rows:
+            try:
+                # Get the class name from the label
+                label_element = self.driver.find_element(By.XPATH, f"//*[@id='VhClass']/tbody/tr[{row_num}]/td/label")
+                class_name = label_element.text.strip()
+                
+                if class_name and self._check_filter_checkbox("VhClass", row_num, class_name, silent=True):
+                    print(f"   ⚠️ UNWANTED VEHICLE CLASS SELECTED: {class_name} (row {row_num})")
+                    verification_results["unwanted_selections"]["vehicle_classes"].append(class_name)
+            except:
+                continue
+        
+        # ===== 3. OVERALL VERIFICATION SUMMARY =====
+        print(f"\n📊 COMPREHENSIVE VERIFICATION SUMMARY:")
+        print(f"{'='*80}")
+        
+        fuel_success = len(verification_results["fuel_filters"]["verified"])
+        fuel_total = len(verification_results["fuel_filters"]["expected"])
+        
+        vehicle_success = len(verification_results["vehicle_classes"]["verified"])
+        vehicle_total = len(verification_results["vehicle_classes"]["expected"])
+        
+        unwanted_count = (len(verification_results["unwanted_selections"]["fuel"]) + 
+                         len(verification_results["unwanted_selections"]["vehicle_classes"]))
+        
+        print(f"🔋 Fuel Filters: {fuel_success}/{fuel_total} verified")
+        print(f"   ✅ Verified: {verification_results['fuel_filters']['verified']}")
+        print(f"   ❌ Failed: {verification_results['fuel_filters']['failed']}")
+        
+        print(f"\n🚗 Vehicle Classes: {vehicle_success}/{vehicle_total} verified")
+        print(f"   ✅ Verified: {verification_results['vehicle_classes']['verified']}")
+        print(f"   ❌ Failed: {verification_results['vehicle_classes']['failed']}")
+        
+        print(f"\n🚨 Unwanted Selections: {unwanted_count} found")
+        if verification_results["unwanted_selections"]["fuel"]:
+            print(f"   ⚠️ Unwanted Fuel: {verification_results['unwanted_selections']['fuel']}")
+        if verification_results["unwanted_selections"]["vehicle_classes"]:
+            print(f"   ⚠️ Unwanted Vehicle Classes: {verification_results['unwanted_selections']['vehicle_classes']}")
+        
+        # Calculate overall success
+        total_expected = fuel_total + vehicle_total
+        total_verified = fuel_success + vehicle_success
+        
+        # Consider successful if:
+        # 1. At least 70% of expected filters are verified
+        # 2. No more than 2 unwanted selections
+        success_rate = total_verified / total_expected if total_expected > 0 else 0
+        verification_passed = success_rate >= 0.7 and unwanted_count <= 2
+        
+        if verification_passed:
+            verification_results["overall_status"] = "passed"
+            print(f"\n✅ COMPREHENSIVE VERIFICATION PASSED")
+            print(f"   Success Rate: {success_rate:.1%} ({total_verified}/{total_expected})")
+            print(f"   Unwanted Selections: {unwanted_count} (acceptable)")
+        else:
+            verification_results["overall_status"] = "failed"
+            print(f"\n❌ COMPREHENSIVE VERIFICATION FAILED")
+            print(f"   Success Rate: {success_rate:.1%} ({total_verified}/{total_expected})")
+            print(f"   Unwanted Selections: {unwanted_count} (too many)" if unwanted_count > 2 else "")
+        
+        print(f"{'='*80}")
+        
+        return verification_passed, verification_results
+    
+    def _check_filter_checkbox(self, table_id, row_num, filter_name, silent=False):
+        """Helper method to check if a specific filter checkbox is selected"""
+        try:
+            if not silent:
+                print(f"🔍 Checking: {filter_name} (row {row_num})")
+            
+            # Try multiple comprehensive XPaths
+            checkbox_xpaths = [
+                f"//*[@id='{table_id}']/tbody/tr[{row_num}]/td/div/div[2]/span",
+                f"//*[@id='{table_id}']/tbody/tr[{row_num}]/td//span[contains(@class,'ui-chkbox-box')]",
+                f"//*[@id='{table_id}']/tbody/tr[{row_num}]//span[contains(@class,'ui-state')]",
+                f"//*[@id='{table_id}']/tbody/tr[{row_num}]/td//div[contains(@class,'ui-chkbox')]//span"
+            ]
+            
+            checkbox = None
+            for xpath in checkbox_xpaths:
+                try:
+                    checkbox = self.driver.find_element(By.XPATH, xpath)
+                    break
+                except:
+                    continue
+            
+            if checkbox:
+                checkbox_class = checkbox.get_attribute("class") or ""
+                if not silent:
+                    print(f"   📋 Class: '{checkbox_class}'")
+                
+                # Check various ways the checkbox might indicate selection
+                is_selected = False
+                
+                if ("ui-state-active" in checkbox_class or 
+                    "ui-state-checked" in checkbox_class or
+                    "ui-state-highlight" in checkbox_class):
+                    is_selected = True
+                    if not silent:
+                        print(f"   ✅ {filter_name} is SELECTED")
+                
+                # Additional checks
+                try:
+                    parent = checkbox.find_element(By.XPATH, "..")
+                    parent_class = parent.get_attribute("class") or ""
+                    if "ui-state-active" in parent_class:
+                        is_selected = True
+                except:
+                    pass
+                
+                try:
+                    aria_checked = checkbox.get_attribute("aria-checked")
+                    if aria_checked == "true":
+                        is_selected = True
+                except:
+                    pass
+                
+                if not is_selected and not silent:
+                    print(f"   ❌ {filter_name} is NOT selected")
+                
+                return is_selected
+            else:
+                if not silent:
+                    print(f"   ❌ Could not find checkbox for {filter_name}")
+                return False
+                
+        except Exception as e:
+            if not silent:
+                print(f"   ❌ Error checking {filter_name}: {e}")
+            return False
     
     def rename_downloaded_file(self, state_name, rto_name, year_name, product_type):
         """Rename the downloaded file based on category"""
@@ -1151,6 +1447,9 @@ class VahanScraper:
     def scrape_single_product(self, state_name, state_xpath, rto_name, rto_xpath, year_name, year_xpath, product_type):
         """Scrape data for a single product type"""
         try:
+            # Mark task as started
+            self.progress_tracker.update_task_status(state_name, rto_name, year_name, product_type, "started")
+            
             print(f"\n{'='*80}")
             print(f"SCRAPING: State={state_name}, RTO={rto_name}, Year={year_name}, Product={product_type}")
             print(f"{'='*80}")
@@ -1208,7 +1507,25 @@ class VahanScraper:
             elif product_type == "ICE":
                 print("🔄 Selecting ICE vehicle classes...")
                 self.select_vehicle_classes(['M_CYCLE_SCOOTER', 'M_CYCLE_SCOOTER_SIDE_CAR', 'MOPED'])
-            # E2W doesn't need specific vehicle class selection
+            
+            # 🔍 COMPREHENSIVE FILTER VERIFICATION
+            print("🔍 Verifying all filters comprehensively...")
+            verification_passed, filter_details = self.verify_all_filters_comprehensive(product_type)
+            
+            if not verification_passed:
+                print("⚠️ Comprehensive filter verification failed! Continuing anyway but marking status...")
+                self.progress_tracker.update_task_status(
+                    state_name, rto_name, year_name, product_type, 
+                    "comprehensive_verification_failed", 
+                    filter_details
+                )
+            else:
+                print("✅ All filters verified successfully!")
+                self.progress_tracker.update_task_status(
+                    state_name, rto_name, year_name, product_type, 
+                    "comprehensive_verification_passed", 
+                    filter_details
+                )
             
             # Second refresh after filters
             print("🔄 Refreshing after filter selection...")
@@ -1221,15 +1538,24 @@ class VahanScraper:
                 success = self.download_csv(state_name, rto_name, year_name, product_type)
                 if success:
                     print(f"✅ Successfully downloaded and renamed: {state_name}_{rto_name}_{year_name}_{product_type}")
+                    self.progress_tracker.update_task_status(state_name, rto_name, year_name, product_type, "completed")
                 else:
                     print(f"❌ Failed to download: {state_name}_{rto_name}_{year_name}_{product_type}")
+                    self.progress_tracker.update_task_status(state_name, rto_name, year_name, product_type, "download_failed")
                     return False
+            else:
+                self.progress_tracker.update_task_status(state_name, rto_name, year_name, product_type, "completed")
             
             print(f"✅ {product_type} data extraction completed successfully!")
             return True
             
         except Exception as e:
             print(f"❌ Error during {product_type} scraping: {e}")
+            self.progress_tracker.update_task_status(
+                state_name, rto_name, year_name, product_type, 
+                "error", 
+                {"error_message": str(e)}
+            )
             return False
     
     def run_full_scraping_flow(self):
@@ -1275,6 +1601,13 @@ class VahanScraper:
                         for product_type in PRODUCTS_TO_SCRAPE:
                             task_id = f"{state_name}_{rto_name}_{year_name}_{product_type}"
                             
+                            # Check if task was already completed
+                            current_status = self.progress_tracker.get_task_status(state_name, rto_name, year_name, product_type)
+                            if current_status in ["completed", "comprehensive_verification_passed"]:
+                                print(f"⏭️ Skipping completed task: {task_id}")
+                                completed_tasks += 1
+                                continue
+                            
                             print(f"\n📋 Task {completed_tasks + 1}/{total_tasks}: {task_id}")
                             
                             # Scrape this specific combination
@@ -1302,18 +1635,25 @@ class VahanScraper:
         except Exception as e:
             print(f"\n❌ Unexpected error in scraping flow: {e}")
         
-        # Final summary
+        # Final summary with progress tracking
         print(f"\n{'='*100}")
         print(f"🏁 SCRAPING FLOW COMPLETED")
         print(f"Total tasks: {total_tasks}")
         print(f"Completed successfully: {completed_tasks}")
         print(f"Failed tasks: {len(failed_tasks)}")
         
+        # Show progress summary
+        progress_summary = self.progress_tracker.get_summary()
+        print(f"\n📊 PROGRESS SUMMARY:")
+        for status, count in progress_summary.items():
+            print(f"  {status}: {count}")
+        
         if failed_tasks:
             print(f"\n❌ Failed tasks:")
             for task in failed_tasks:
                 print(f"  - {task}")
         
+        print(f"\n📄 Progress saved to: {self.progress_tracker.progress_file}")
         print(f"{'='*100}")
     
     def close(self):
