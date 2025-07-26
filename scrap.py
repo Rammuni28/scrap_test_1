@@ -723,43 +723,73 @@ VEHICLE_CLASSES_CONFIG = {
 
 # ================== USER CONFIGURATION ==================
 # Configure what you want to scrape here
-STATES_TO_SCRAPE = ["Chhattisgarh"]  # Add more states as needed
+STATES_TO_SCRAPE = ["maharashtra"]  # Add more states as needed
 YEARS_TO_SCRAPE = ["2023","2022"]
-PRODUCTS_TO_SCRAPE = ["ICE"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
-
+PRODUCTS_TO_SCRAPE = ["L5P"]  # E2W = M-CYCLE/SCOOTER, M-CYCLE/SCOOTER-WITH SIDE CAR, MOPED
 RTO_TO_SCRAPE = [
-    "AIG(F/P) PHQ - CG3",
-    "Ambikapur RTO - CG15",
-    "BAIKUNTHPUR DTO - CG16",
-    "Baloda Bazar DTO - CG22",
-    "Balod DTO - CG24",
-    "Balrampur DTO - CG30",
-    "Bemetara DTO - CG25",
-    "Bijapur DTO - CG20",
-    "Bilaspur RTO - CG10",
-    "Dantewada DTO - CG18",
-    "Dhamtari DTO - CG5",
-    "DURG RTO - CG7",
-    "Gariyaband DTO - CG23",
-    "Gaurela-Pendra-Marwahi DTO - CG31",
-    "JAGDALPUR RTO - CG17",
-    "Janjgir Champa DTO - CG11",
-    "Jashpur DTO - CG14",
-    "KANKER DTO - CG19",
-    "KAWARDHA DTO - CG9",
-    "KONDAGAON DTO - CG27",
-    "Korba DTO - CG12",
-    "Mahasamund DTO - CG6",
-    "Mungeli DTO - CG28",
-    "Narayanpur DTO - CG21",
-    "Raigarh DTO - CG13",
-    "Raipur RTO - CG4",
-    "Rajnandgaon ARTO - CG8",
-    "RTA TC NAWA RAIPUR - CG998",
-    "State Transport Authority - CG99",
-    "Sukma DTO - CG26",
-    "Surajpur DTO - CG29"
+    "AKLUJ - MH45",
+    "AMBEJOGAI - MH44",
+    "AMRAWATI - MH27",
+    "BARAMATI - MH42",
+    "BEED - MH23",
+    "BHADGAON - MH54",
+    "BHANDARA - MH36",
+    "BULDHANA - MH28",
+    "CHALISGAON - MH52",
+    "CHHATRAPATI SAMBHAJINAGAR - MH20",
+    "Chiplun Chiplun Track - MH202",
+    "DHARASHIV - MH25",
+    "DHULE - MH18",
+    "DY REGIONAL TRANSPORT OFFICE, HINGOLI - MH38",
+    "DY RTO RATNAGIRI - MH8",
+    "GADCHIROLI - MH33",
+    "GONDHIA - MH35",
+    "ICHALKARANJI - MH51",
+    "JALANA - MH21",
+    "KALYAN - MH5",
+    "KARAD - MH50",
+    "KHAMGAON - MH56",
+    "KOLHAPUR - MH9",
+    "MALEGAON - MH41",
+    "MIRA BHAYANDAR - MH58",
+    "MUMBAI (CENTRAL) - MH1",
+    "MUMBAI (EAST) - MH3",
+    "MUMBAI (WEST) - MH2",
+    "NAGPUR (EAST) - MH49",
+    "NAGPUR (RURAL) - MH40",
+    "NAGPUR (U) - MH31",
+    "NANDED - MH26",
+    "NANDURBAR - MH39",
+    "NASHIK - MH15",
+    "PANVEL - MH46",
+    "PARBHANI - MH22",
+    "PEN (RAIGAD) - MH6",
+    "PHALTAN - MH53",
+    "PUNE - MH12",
+    "RTO AHEMEDNAGAR - MH16",
+    "RTO AKOLA - MH30",
+    "R.T.O.BORIVALI - MH47",
+    "RTO CHANDRAPUR - MH34",
+    "RTO JALGAON - MH19",
+    "RTO LATUR - MH24",
+    "RTO MH04-Mira Bhayander FitnessTrack - MH203",
+    "RTO PIMPRI CHINCHWAD - MH14",
+    "RTO SATARA - MH11",
+    "RTO SOLAPUR - MH13",
+    "SANGLI - MH10",
+    "SINDHUDURG(KUDAL) - MH7",
+    "SRIRAMPUR - MH17",
+    "TC OFFICE - MH99",
+    "THANE - MH4",
+    "UDGIR - MH55",
+    "VASAI - MH48",
+    "VASHI (NEW MUMBAI) - MH43",
+    "WARDHA - MH32",
+    "WASHIM - MH37",
+    "YAWATMAL - MH29"
 ]
+
+
 
 
 
@@ -768,7 +798,7 @@ RTO_TO_SCRAPE = [
 # Other configurations
 Y_AXIS = "//*[@id='yaxisVar_4']"
 X_AXIS = "//*[@id='xaxisVar_7']"
-HEADLESS_MODE = True        
+HEADLESS_MODE = True         
 DOWNLOAD_CSV = True
 
 class ProgressTracker:
